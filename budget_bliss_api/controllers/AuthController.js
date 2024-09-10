@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../config/database'); 
+require('dotenv').config(); 
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -10,7 +11,7 @@ const loginUser = async (req, res) => {
   }
 
   try {
-    const sql = 'SELECT * FROM users WHERE email = ?';
+  const sql = 'SELECT * FROM users WHERE email = ?';
     const [result] = await db.promise().query(sql, [email]);
 
     // Check if the user exists
@@ -21,20 +22,20 @@ const loginUser = async (req, res) => {
     const user = result[0];
 
     // Compare the entered password with the hashed password in the database
-    const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid email or password' });
     }
 
     // Generate JWT token if login is successful
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     return res.json({ token });
 
   } catch (err) {
     console.error('Error during login:', err);
     return res.status(500).send('Server error');
-  }
+    }
 };
 
 
