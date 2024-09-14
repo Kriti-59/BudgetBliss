@@ -15,4 +15,6 @@ BudgetBliss is a personal finance web application designed to help users track a
 - **Database:** MySQL
 - **Authentication:** JSON Web Tokens (JWT)
 
+Here is a screenshot of the application:
 
+![Dashboard Screenshot](budget_bliss/src/assets/BudgetBliss.png)
