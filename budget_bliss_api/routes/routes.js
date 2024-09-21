@@ -7,6 +7,9 @@ const db = require('../config/database');
 // Login route
 router.post('/login', authController.loginUser);
 
+//Logout route
+router.post('/logout', authController.logout);
+
 // Dashboard route
 router.get('/dashboard', (req, res) => {
   res.send('Welcome to the dashboard!');
