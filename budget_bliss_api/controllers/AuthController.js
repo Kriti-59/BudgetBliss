@@ -36,7 +36,24 @@ const loginUser = async (req, res) => {
     console.error('Error during login:', err);
     return res.status(500).send('Server error');
     }
-};
+
+  };
+  const logout = async (req, res) => {
+    try {
+      return res.status(200).json({
+        status: 200,
+        message: "logout successfull",
+        
+      })
+    }
+     catch (err) {
+      console.error('Error during logout:', err);
+      return res.status(500).send('Server error');
+    }
+  };
 
 
-module.exports = { loginUser };
+
+
+
+module.exports = { loginUser, logout };
