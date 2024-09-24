@@ -1,4 +1,5 @@
 <template>
+  <h1>Welcome to BudgetBliss</h1>
   <div class="login-container">
     <h1>Login</h1>
     <form @submit.prevent="login">
@@ -45,7 +46,7 @@ const login = async () => {
     console.log('Login successful');
 
     // Store the token in local storage
-    localStorage.setItem('authToken', response.data.token);
+    localStorage.setItem("token", response.data.token);
 
     // Redirect to the dashboard
     router.push('/dashboard');
