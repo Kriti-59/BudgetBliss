@@ -43,10 +43,10 @@ const login = async () => {
       password: password.value
     });
 
-    console.log('Login successful');
-
-    // Store the token in local storage
     localStorage.setItem("token", response.data.token);
+    localStorage.setItem("userId", response.data.user.id);
+    
+
 
     // Redirect to the dashboard
     router.push('/dashboard');
