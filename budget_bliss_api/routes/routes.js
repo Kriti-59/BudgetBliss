@@ -18,4 +18,10 @@ router.get('/dashboard', (req, res) => {
 // Route to get expenses
 router.get('/expenses', ExpenseController.getExpenses);
 
+// Route to add expenses
+router.post('/addExpenses', (req, res, next) => { 
+  ExpenseController.addExpense(req, res);
+});
+
+
 module.exports = router;
