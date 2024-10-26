@@ -31,6 +31,34 @@ const getExpenses = async (req, res) => {
   }
 };
 
+// Function to add expenses
+const addExpense = async (req, res) => {
+  try {
+    const { userId, categoryId, amount, date, description } = req.body;
+
+    if (!userId || !categoryId || !amount || !date || !description) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    // Create the new expense
+    const newExpense = await Expense.create({
+      user_id: userId,
+      category_id: categoryId,
+      amount: amount,
+      date: date,
+      description: description,
+    });
+
+    return res
+      .status(201)
+      .json({ message: "Expense added successfully", expense: newExpense });
+  } catch (error) {
+    console.error("Error adding expense:", error);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
+
 module.exports = {
   getExpenses,
+  addExpense,
 };
