@@ -15,7 +15,24 @@ const Expense = {
     } catch (error) {
       throw new Error('Database query failed');
     }
-  }
+  },
+
+  // Add expenses to database
+  create: async (expenseData) => {
+    const { user_id, category_id, amount, date, description } = expenseData;
+    try {
+      const [result] = await db
+        .promise()
+        .query(
+          `INSERT INTO expenses (user_id, category_id, amount, date, description) VALUES (?, ?, ?, ?, ?)`,
+          [user_id, category_id, amount, date, description]
+        );
+      return result;
+    } catch (error) {
+      console.error("Database query failed:", error);
+      throw new Error("Failed to create expense");
+    }
+  },
 };
 
 module.exports = Expense;
